@@ -1,0 +1,20 @@
+{
+    "name": "pffft-ng.wasm",
+    "description": "WASM build and bindings for marton78/pffft",
+    "version": "0.1.0",
+    "author": "John Luebs <john@luebs.org>",
+    "license": "BSD-3-Clause",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "type": "module",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc"
+    },
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "typescript": "^5.0.0"
+    }
+}

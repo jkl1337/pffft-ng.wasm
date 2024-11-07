@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "ES2022",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "outDir": "./dist",
+        "strict": true,
+        "sourceMap": true,
+        "declaration": true,
+        "declarationDir": "./dist/types/",
+        "noImplicitAny": true,
+        "esModuleInterop": true,
+        "downlevelIteration": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "isolatedModules": true,
+        "isolatedDeclarations": true
+    },
+    "include": ["src"],
+    "exclude": ["src/**/*.test.ts"]
+}

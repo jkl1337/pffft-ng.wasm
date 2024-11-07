@@ -1,20 +1,41 @@
 {
-    "name": "pffft-ng.wasm",
+    "type": "module",
+    "name": "pffft-ng",
     "description": "WASM build and bindings for marton78/pffft",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jkl1337/pffft-ng.wasm.git"
+    },
     "version": "0.1.0",
     "author": "John Luebs <john@luebs.org>",
     "license": "BSD-3-Clause",
-    "main": "./dist/index.js",
+    "keywords": ["pffft", "fft", "wasm", "dsp", "wasm", "webassembly", "simd"],
     "types": "./dist/index.d.ts",
-    "type": "module",
-    "files": [
-        "dist"
-    ],
+    "module": "./dist/index.js",
+    "files": ["dist"],
+    "exports": {
+        ".": "./dist/index.js",
+        "./pffft-ng-f32.wasm": "./dist/pffft-ng-f32.wasm",
+        "./pffft-ng-f64.wasm": "./dist/pffft-ng-f64.wasm"
+    },
     "scripts": {
-        "build": "tsc"
+        "build": "tsc && cp -f src/pffft-ng-f32.wasm src/pffft-ng-f64.wasm ./dist",
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint .",
+        "format": "prettier --write \"*.{js,ts,json,css,yml,yaml}\" \"**/*.{js,ts,json,css,yml.yaml}\"",
+        "format:check": "prettier --check \"**/*.{js,ts,json,css,yml,yaml}\"",
+        "serve": "http-server -c-1",
+        "test": "vitest"
     },
     "devDependencies": {
+        "@eslint/js": "9.14.0",
         "@types/node": "^20.0.0",
-        "typescript": "^5.0.0"
-    }
+        "globals": "^15.12.0",
+        "http-server": "^14.1.1",
+        "prettier": "^3.3.3",
+        "typescript": "^5.0.0",
+        "typescript-eslint": "^8.13.0",
+        "vitest": "^2.1.4"
+    },
+    "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee"
 }

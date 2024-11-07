@@ -1,0 +1,41 @@
+name: Check
+
+on:
+    push:
+
+jobs:
+    check:
+        if: ${{ !startsWith(github.event.head_commit.message, 'release:') }}
+        runs-on: ubuntu-24.04
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Export commit timestamp
+              run: echo "SOURCE_DATE_EPOCH=$(git log -1 --pretty=%ct)" >> $GITHUB_ENV
+
+            - name: Emscripten
+              uses: ./.github/actions/emscripten
+
+            - name: Restore environment
+              uses: ./.github/actions/restore
+
+            - name: Format
+              continue-on-error: true
+              run: pnpm format:check
+
+            - name: Lint
+              continue-on-error: true
+              run: pnpm lint
+
+            - name: Typecheck
+              run: pnpm typecheck
+
+            - name: Test
+              run: pnpm test
+
+            - name: Build
+              run: pnpm build
+
+            - name: Publish dry-run
+              run: npm publish --dry-run
